@@ -58,7 +58,7 @@ public class RequestController {
 			String date = dateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
 			EmailTemplate emailTemplate = this.iEmailTemplateServices.getEmailTemplateById(1L);
 			// send mail to the user for notification
-			String to = "briki.ahmed21@gmail.com";
+			String to = "mahdighofrane01@gmail.com";
 			String subject = emailTemplate.getSubject();
 			String body = emailTemplate.getBody();
 			emailService.sendEmail(to, subject, body);
@@ -115,7 +115,7 @@ public class RequestController {
 
 		EmailTemplate emailTemplate = this.iEmailTemplateServices.getEmailTemplateById(2L);
 		// send mail to the user for notification
-		String to = "briki.ahmed21@gmail.com";
+		String to = "mahdighofrane01@gmail.com";
 		String subject = emailTemplate.getSubject();
 		String body = emailTemplate.getBody();
 		emailService.sendEmail(to, subject, body);
