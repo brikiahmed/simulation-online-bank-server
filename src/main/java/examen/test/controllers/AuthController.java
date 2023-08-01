@@ -197,7 +197,7 @@ public class AuthController {
 		// Build the verification URL with the token
 		String verificationUrl = "http://localhost:4200/verify-email?token=" + token;
 
-		String to = "briki.ahmed21@gmail.com";
+		String to = "mahdighofrane01@gmail.com";
 		String subject = "Email Verification";
 		String body = "Bienvenue dans notre application \n" +
 				"Pour confirmer votre compte, veuillez cliquer sur ce lien: " + verificationUrl +"\n Merci d'avance!";
@@ -209,7 +209,7 @@ public class AuthController {
 		// Build the verification URL with the token
 		String verificationUrl = "http://localhost:4200/reset-password?token=" + token;
 
-		String to = "briki.ahmed21@gmail.com";
+		String to = "mahdighofrane01@gmail.com";
 		String subject = "Reset password verification";
 		String body = "Bienvenue dans notre application \n" +
 				"Pour réinitialiser votre mot de passe, veuillez cliquer sur ce lien: " + verificationUrl +"\n Merci d'avance!";
