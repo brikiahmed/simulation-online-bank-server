@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import examen.test.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,6 +32,10 @@ public class UserController {
 	
 	@Autowired
 	RoleRepository roleRepository ;
+
+
+	@Autowired
+	UserServices userServices ;
 	
 	@PostMapping("/CreateUser")
 	public User CreateGabarits (@RequestBody User user) {
@@ -66,5 +71,11 @@ public class UserController {
         iUserServices.RemoveUser(id);
         return ResponseEntity.ok("User with ID " + id + " deleted successfully.");
     }
+
+	@GetMapping("/count")
+	public ResponseEntity<Long> getTotalUsersCount() {
+		Long count = userServices.getTotalUsersCount();
+		return ResponseEntity.ok(count);
+	}
 
 }

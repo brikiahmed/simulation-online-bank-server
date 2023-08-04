@@ -2,7 +2,9 @@ package examen.test.services;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 @Service
@@ -37,6 +40,38 @@ public class RequestServices implements IRequestServices {
 	public Request CreateRequest(Request request) {
 		
 		return requestRepository.save(request);
+	}
+
+	public Map<String, Integer> getRequestStatusCount() {
+		List<Object[]> statusCounts = requestRepository.getRequestStatusCount();
+
+		Map<String, Integer> result = new HashMap<>();
+		for (Object[] row : statusCounts) {
+			String status = (String) row[0];
+			Long count = (Long) row[1];
+			result.put(status, count.intValue());
+		}
+
+		return result;
+	}
+
+	public Map<String, Map<String, Integer>> getRequestStatusCountByDateAndType() {
+		List<Object[]> statusCounts = requestRepository.getRequestStatusCountByDateAndType();
+
+		Map<String, Map<String, Integer>> result = new HashMap<>();
+
+		for (Object[] row : statusCounts) {
+			String dateGroup = (String) row[0];
+			String typeRequest = (String) row[1];
+			Long count = (Long) row[2];
+
+			result.putIfAbsent(dateGroup, new HashMap<>());
+			Map<String, Integer> typeMap = result.get(dateGroup);
+
+			typeMap.put(typeRequest, count.intValue());
+		}
+
+		return result;
 	}
 
 	@Override

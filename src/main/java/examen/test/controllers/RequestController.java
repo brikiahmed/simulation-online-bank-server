@@ -3,6 +3,7 @@ package examen.test.controllers;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 import examen.test.entities.EmailTemplate;
 import examen.test.repositories.RequestRepository;
@@ -100,6 +101,18 @@ public class RequestController {
         iRequestServices.RemoveRequest(id);
         return ResponseEntity.ok("Request with ID " + id + " deleted successfully.");
     }
+
+	@GetMapping("/status")
+	public ResponseEntity<Map<String, Integer>> getRequestStatusCount() {
+		Map<String, Integer> statusCounts = requestServices.getRequestStatusCount();
+		return ResponseEntity.ok(statusCounts);
+	}
+
+	@GetMapping("/creation-date")
+	public ResponseEntity<Map<String, Map<String, Integer>>> getRequestStatusCountByDateAndType() {
+		Map<String, Map<String, Integer>> DateCounts = requestServices.getRequestStatusCountByDateAndType();
+		return ResponseEntity.ok(DateCounts);
+	}
 
 	@PutMapping("/refuse/{requestId}")
 	public ResponseEntity<String> refuseRequest(@RequestBody Request request, @PathVariable("requestId") Long requestId) {

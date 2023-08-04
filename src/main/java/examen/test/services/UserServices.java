@@ -57,6 +57,10 @@ public class UserServices implements IUserServices {
 		
 	}
 
+	public Long getTotalUsersCount() {
+		return userRepository.count();
+	}
+
 	public User getUserByVerificationToken(String verificationToken) {
 		return userRepository.findByToken(verificationToken);
 	}
